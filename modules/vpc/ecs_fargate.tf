@@ -60,14 +60,6 @@ resource "aws_ecs_task_definition" "fargate" {
         "name": "ECS_CONTAINER_STOP_TIMEOUT",
         "value": "300"  // Example value in seconds
         },
-#        {
-#          name  = "DB_USER"
-#          value = data.aws_ssm_parameter.db_username.value
-#        },
-#        {
-#          name  = "DB_PASSWORD"
-#          value = data.aws_ssm_parameter.db_password.value
-#        },
         {
           name  = "DB_HOST"
           value = aws_db_instance.main.address
