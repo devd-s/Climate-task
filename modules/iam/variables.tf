@@ -3,19 +3,9 @@ variable "ecs_task_execution_role_name" {
   type        = string
 }
 
-variable "ecs_task_role_name" {
-  description = "Name of the ECS Task Role"
-  type        = string
-}
-
 variable "ecs_rds_access_policy_name" {
   description = "Name of the IAM Policy to allow ECS Task to access RDS"
   type        = string
-}
-
-variable "rds_resources_arn" {
-  description = "List of RDS resource ARNs that ECS task can access"
-  type        = list(string)
 }
 
 variable "tags" {
