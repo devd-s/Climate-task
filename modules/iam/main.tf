@@ -19,25 +19,6 @@ resource "aws_iam_role" "ecs_task_execution_role" {
   tags = var.tags
 }
 
-resource "aws_iam_role" "ecs_task_role" {
-  name = var.ecs_task_role_name
-
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Principal = {
-          Service = "ecs-tasks.amazonaws.com"
-        }
-        Action = "sts:AssumeRole"
-      }
-    ]
-  })
-
-  tags = var.tags
-}
-
 resource "aws_iam_policy" "ecs_rds_access_policy" {
   name        = var.ecs_rds_access_policy_name
   description = "Policy for ECS task to access RDS"
@@ -47,9 +28,9 @@ resource "aws_iam_policy" "ecs_rds_access_policy" {
       {
         Effect = "Allow"
         Action = [
-          "rds:*",
-          "secretsmanager:GetSecretValue",
-          "secretsmanager:DescribeSecret"
+          "rds:DescribeDBInstances",
+          "rds:DescribeDBClusters",
+          "rds:ListTagsForResource"
         ]
         Resource = var.rds_resources_arn
       },
